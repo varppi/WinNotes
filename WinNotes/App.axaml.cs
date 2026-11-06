@@ -1,0 +1,32 @@
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices.Swift;
+using System.Windows.Input;
+
+namespace WinNotes;
+
+public partial class App : Application
+{
+    public override void Initialize()
+    {
+        AvaloniaXamlLoader.Load(this);
+    }
+
+    public override void OnFrameworkInitializationCompleted()
+    {
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            desktop.MainWindow = new MainWindow();
+        }
+
+        base.OnFrameworkInitializationCompleted();
+    }
+
+    public void CloseProgram(object sender, EventArgs e) 
+        =>  Environment.Exit(0);
+    
+}
